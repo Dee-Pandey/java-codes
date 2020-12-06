@@ -30,7 +30,7 @@ public class MyTicTacToeGame {
 			Scanner scanX = new Scanner(System.in);
 			System.out.println("Hi player X, enter your position:");
 			int playerXPos = scanX.nextInt();
-				while(playerXPos>9 || playerXPos<0) {
+				while(playerXPos>9 || playerXPos<=0) {
 					System.out.println("Hi X, please enetr a position between 1 and 9:");
 					playerXPos = scanX.nextInt();
 				}
@@ -54,14 +54,14 @@ public class MyTicTacToeGame {
 				Scanner scanO = new Scanner(System.in);
 				System.out.println("Hi player O, enter your position:");
 				int playerOPos = scanO.nextInt();
-				while(playerOPos>9 || playerOPos<0) {
+				while(playerOPos>9 || playerOPos<=0) {
 					System.out.println("Hi O, please enetr a position between 1 and 9:");
 					playerOPos = scanO.nextInt();
 				};
 					
 				while(playerXPositions.contains(playerOPos) || playerOPositions.contains(playerOPos))
 				{
-					System.out.println("o, Position taken! Check the borad and enter correct position...");
+					System.out.println("O, Position taken! Check the borad and enter correct position...");
 					playerOPos = scanO.nextInt();
 				}
 				fillSymbol(gameBoard, playerOPos, "playerO");

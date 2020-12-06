@@ -13,10 +13,10 @@ public class MyTicTacToeGame {
 		System.out.println("Game Board Creation...");
 		//Game Board
 		char [][] gameBoard = {{' ','|', ' ', '|', ' '},
-							{'-', '+', '-', '+', '-'},
-							{' ','|', ' ', '|', ' '},
-							{'-', '+', '-', '+', '-'},
-							{' ','|', ' ', '|', ' '}};
+							  {'-', '+', '-', '+', '-'},
+							  {' ','|', ' ', '|', ' '},
+							  {'-', '+', '-', '+', '-'},
+							  {' ','|', ' ', '|', ' '}};
 		
 		printGame(gameBoard);
 		System.out.println();
@@ -24,54 +24,67 @@ public class MyTicTacToeGame {
 		System.out.println("The game will start with player X");
 		System.out.println();
 		
-		while(true) {
+		try
+		{
+			while(true) {
 			Scanner scanX = new Scanner(System.in);
 			System.out.println("Hi player X, enter your plosition:");
 			int playerXPos = scanX.nextInt();
-			while(playerXPos>9 || playerXPos<0) {
-				System.out.println("Hi X, please enetr a position between 1 and 9:");
-				playerXPos = scanX.nextInt();
-			}
-			while(playerXPositions.contains(playerXPos) || playerOPositions.contains(playerXPos))
-			{
-				System.out.println("Hey X,Position taken! Check the board and enter correct position...");
-				playerXPos = scanX.nextInt();
-			}
-			fillSymbol(gameBoard, playerXPos, "playerX");
-		
-			String result = computeWinner();
-			if(result.length()>0) {
-				System.out.println();
-				printGame(gameBoard);
-				System.out.println(result);
-				break;
-			}
+				while(playerXPos>9 || playerXPos<0) {
+					System.out.println("Hi X, please enetr a position between 1 and 9:");
+					playerXPos = scanX.nextInt();
+				}
+				while(playerXPositions.contains(playerXPos) || playerOPositions.contains(playerXPos))
+				{
+					System.out.println("Hey X,Position taken! Check the board and enter correct position...");
+					playerXPos = scanX.nextInt();
+				}
+				fillSymbol(gameBoard, playerXPos, "playerX");
 			
-			Scanner scanO = new Scanner(System.in);
-			System.out.println("Hi player O, enter your plosition:");
-			int playerOPos = scanO.nextInt();
-			while(playerOPos>9 || playerOPos<0) {
-				System.out.println("Hi O, please enetr a position between 1 and 9:");
-				playerOPos = scanO.nextInt();
-			};
+				String result = computeWinner();
+				if(result.length()>0) {
+					System.out.println();
+					System.out.println("player X:");
+					printGame(gameBoard);
+					System.out.println();
+					System.out.println(result);
+					break;
+				}
 				
-			while(playerXPositions.contains(playerOPos) || playerOPositions.contains(playerOPos))
-			{
-				System.out.println("o, Position taken! Check the borad and enter correct position...");
-				playerOPos = scanO.nextInt();
-			}
-			fillSymbol(gameBoard, playerOPos, "playerO");
+				Scanner scanO = new Scanner(System.in);
+				System.out.println("Hi player O, enter your plosition:");
+				int playerOPos = scanO.nextInt();
+				while(playerOPos>9 || playerOPos<0) {
+					System.out.println("Hi O, please enetr a position between 1 and 9:");
+					playerOPos = scanO.nextInt();
+				};
+					
+				while(playerXPositions.contains(playerOPos) || playerOPositions.contains(playerOPos))
+				{
+					System.out.println("o, Position taken! Check the borad and enter correct position...");
+					playerOPos = scanO.nextInt();
+				}
+				fillSymbol(gameBoard, playerOPos, "playerO");
+			
 			
 			printGame(gameBoard);
 			result = computeWinner();
 			if(result.length()>0) {
 				System.out.println();
+				System.out.println("player O:");
 				printGame(gameBoard);
+				System.out.println();
 				System.out.println(result);
 				break;
 			}
 		 }
 		}
+		catch (Exception e) {
+			System.out.println("An exception occurred: "+e);
+			if(e.getMessage()==null)
+				System.out.println("You have to enter integer only!");
+		}
+	}
 	public static void fillSymbol(char[][] gameBoard, int pos, String user) {
 		
 		char symbol = ' ';
@@ -108,7 +121,6 @@ public class MyTicTacToeGame {
 			case 7:
 				gameBoard[4][0] = symbol;
 				break;
-			
 			case 8:
 				gameBoard[4][2] = symbol;
 				break;
@@ -143,16 +155,14 @@ public class MyTicTacToeGame {
 		
 		for(List l : winning) {
 			if(playerXPositions.containsAll(l)) 
-				return "PLAYER X WON";
+				return "PLAYER X WON!";
 			else if(playerOPositions.containsAll(l))
 				return "PLAYER O WON!";
 			else if(playerXPositions.size()+playerOPositions.size()==9)
 				return "GAME ENDS WITH A DRAW!";
-			
-		}
-		
-				return "";
-	}
+			}
+			return "";
+			}
 	public static void printGame(char[][] gameBoard) {
 	
 		for(char[] row : gameBoard) {

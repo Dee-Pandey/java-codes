@@ -28,7 +28,7 @@ public class MyTicTacToeGame {
 		{
 			while(true) {
 			Scanner scanX = new Scanner(System.in);
-			System.out.println("Hi player X, enter your plosition:");
+			System.out.println("Hi player X, enter your position:");
 			int playerXPos = scanX.nextInt();
 				while(playerXPos>9 || playerXPos<0) {
 					System.out.println("Hi X, please enetr a position between 1 and 9:");
@@ -52,7 +52,7 @@ public class MyTicTacToeGame {
 				}
 				
 				Scanner scanO = new Scanner(System.in);
-				System.out.println("Hi player O, enter your plosition:");
+				System.out.println("Hi player O, enter your position:");
 				int playerOPos = scanO.nextInt();
 				while(playerOPos>9 || playerOPos<0) {
 					System.out.println("Hi O, please enetr a position between 1 and 9:");
